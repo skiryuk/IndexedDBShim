@@ -20,7 +20,9 @@ function IDBDatabase (db, name, version, storeProperties) {
     this.__objectStores = {};
     this.__objectStoreNames = new util.StringList();
     for (let i = 0; i < storeProperties.rows.length; i++) {
-        const item = storeProperties.rows.item(i);
+        let item = storeProperties.rows.item(i);
+        // Cloning item, because IOS not assigned just read variable
+        item = JSON.parse(JSON.stringify(item));
         // 'name' doesn't need to be JSON-parsed
         ['keyPath', 'autoInc', 'indexList'].forEach(function (prop) {
             item[prop] = JSON.parse(item[prop]);
