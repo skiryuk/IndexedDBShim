@@ -20398,7 +20398,7 @@ function findMultiEntryMatches(keyEntry, range) {
 
 function _encode(key, inArray) {
     // Bad keys like `null`, `object`, `boolean`, 'function', 'symbol' should not be passed here due to prior validation
-    if (key === undefined) {
+    if (!key) {
         return null;
     }
     // Currently has array, date, number, string
